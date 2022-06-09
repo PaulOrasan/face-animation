@@ -20,7 +20,14 @@ dependencies {
     testImplementation('com.jayway.jsonpath:json-path')
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'commons-io:commons-io:2.5'
     testImplementation('org.springframework.boot:spring-boot-starter-test')
+    implementation 'org.hibernate:hibernate-core:5.3.1.Final'
+    implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
+    implementation "org.glassfish.jaxb:jaxb-runtime:2.3.2"
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    implementation 'org.projectlombok:lombok:1.18.24'
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.29'
 }
 
 test {

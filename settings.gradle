@@ -1,2 +1,4 @@
 rootProject.name = 'FaceAnimation'
+include 'Model'
+include 'Persistence'
 
