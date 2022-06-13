@@ -13,7 +13,7 @@
         <property name="connection.url">jdbc:mysql://localhost/FaceAnimation</property>
         <property name="connection.pool_size">3</property>
         <property name="current_session_context_class">thread</property>
-        <property name="hibernate.hbm2ddl.auto">create</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
 
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
@@ -24,6 +24,6 @@
         <mapping class="faceanimation.model.GeneratedVideo"/>
         <mapping class="faceanimation.model.ModelEntity"/>
         <mapping class="faceanimation.model.SourceImage"/>
-        <mapping class="faceanimation.model.User"/>
+        <mapping class="faceanimation.model.AppUser"/>
     </session-factory>
 </hibernate-configuration>

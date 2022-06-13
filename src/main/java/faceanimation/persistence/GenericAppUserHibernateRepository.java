@@ -1,6 +1,6 @@
 package faceanimation.persistence;
 
-import faceanimation.model.User;
+import faceanimation.model.AppUser;
 import faceanimation.utils.HibernateUtils;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -8,23 +8,23 @@ import org.hibernate.Transaction;
 import java.util.List;
 import java.util.UUID;
 
-public abstract class GenericUserHibernateRepository<E extends User> extends GenericHibernateRepository<UUID, E> implements UserRepository<E> {
+public abstract class GenericAppUserHibernateRepository<E extends AppUser> extends GenericHibernateRepository<UUID, E> implements AppUserRepository<E> {
 
-    public GenericUserHibernateRepository(Class<E> elemType) {
+    public GenericAppUserHibernateRepository(Class<E> elemType) {
         super(elemType);
     }
 
     @Override
-    public E findUserByEmailAndPassword(String email, String password) {
+    public E findUserByUsernameAndPassword(String username, String password) {
         try(Session session = HibernateUtils.getSessionFactory().openSession()) {
             Transaction tx = null;
             try {
                 tx = session.beginTransaction();
                 String className = elemType.getName();
-                List<E> entities = session.createQuery(" from " + className + " C where C.email = ? and C.password = ?",
+                List<E> entities = session.createQuery(" from " + className + " C where C.username = ?1 and C.password = ?2",
                                 elemType)
-                        .setParameter(0, email)
-                        .setParameter(1, password)
+                        .setParameter(1, username)
+                        .setParameter(2, password)
                         .list();
                 tx.commit();
                 if (entities.isEmpty())
@@ -39,15 +39,15 @@ public abstract class GenericUserHibernateRepository<E extends User> extends Gen
         }
     }
 
-    public E findUserByEmail(String email) {
+    public E findUserByUsername(String username) {
         try(Session session = HibernateUtils.getSessionFactory().openSession()) {
             Transaction tx = null;
             try {
                 tx = session.beginTransaction();
                 String className = elemType.getName();
-                List<E> entities = session.createQuery(" from " + className + " C where C.email = ?",
+                List<E> entities = session.createQuery(" from " + className + " C where C.username = ?1",
                                 elemType)
-                        .setParameter(0, email)
+                        .setParameter(1, username)
                         .list();
                 tx.commit();
                 if (entities.isEmpty())

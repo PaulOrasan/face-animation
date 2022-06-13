@@ -5,4 +5,6 @@ import faceanimation.model.DrivingVideo;
 import java.util.UUID;
 
 public interface DrivingVideoRepository extends Repository<UUID, DrivingVideo> {
+
+    public DrivingVideo findDrivingVideoByAnnotation(String annotation);
 }

@@ -1,26 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
-import Form from './Form.js';
+import {useState} from 'react';
+import {BrowserRouter, Route, Routes, useNavigate} from 'react-router-dom';
+import VideoGenerator from "./video_generator/VideoGenerator";
+import Login from "./login/login";
+import {replaceBehavior} from "@testing-library/user-event/dist/keyboard/plugins";
+
 function App() {
-  return (
-    /*<div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>*/
-      <Form />
-  );
+    const [token, setToken] = useState();
+
+    const navigate = useNavigate();
+    if(!token) {
+        console.log("navigating");
+        navigate("/login", {replace:true});
+    }
+
+    return (
+        <div className="wrapper">
+            <h1>Application</h1>
+        </div>
+    );
 }
 
 export default App;

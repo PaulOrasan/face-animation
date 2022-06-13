@@ -1,6 +1,7 @@
 package faceanimation.model;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import java.io.Serializable;
@@ -9,25 +10,27 @@ import java.util.UUID;
 
 @Entity
 @Getter
-public class User extends ModelEntity<UUID> implements Serializable {
+@Setter
+public class AppUser extends ModelEntity<UUID> implements Serializable {
     private String name;
     private String surname;
-    private String email;
+    private String username;
+    private String password;
 
-    public User() {}
+    public AppUser() {}
 
-    public User(String name, String surname, String email) {
+    public AppUser(String name, String surname, String username) {
         super(UUID.randomUUID());
         this.name = name;
         this.surname = surname;
-        this.email = email;
+        this.username = username;
     }
 
-    public User(UUID id, String name, String surname, String email) {
+    public AppUser(UUID id, String name, String surname, String username) {
         super(id);
         this.name = name;
         this.surname = surname;
-        this.email = email;
+        this.username = username;
     }
 
     @Override
@@ -35,7 +38,7 @@ public class User extends ModelEntity<UUID> implements Serializable {
         return "Person{" +
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", email='" + email + '\'' +
+                ", email='" + username + '\'' +
                 '}';
     }
 
@@ -43,12 +46,12 @@ public class User extends ModelEntity<UUID> implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User person = (User) o;
-        return email.equals(person.email);
+        AppUser person = (AppUser) o;
+        return username.equals(person.username);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(email);
+        return Objects.hash(username);
     }
 }

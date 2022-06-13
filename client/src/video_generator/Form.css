@@ -1,0 +1,10 @@
+form {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+
+form > input, select {
+    margin-top: 10px;
+    margin-bottom: 30px;
+}

@@ -23,12 +23,12 @@ public class SourceImageService {
     private String generateUUIDFileName(MultipartFile file) {
         return UUID.randomUUID().toString() + "." + FilenameUtils.getExtension(file.getOriginalFilename());
     }
-    public void saveSourceImage(MultipartFile sourceImageFile) {
+    public SourceImage saveSourceImage(MultipartFile sourceImageFile) {
         SourceImage sourceImage = SourceImage.builder()
                 .file(sourceImageFile)
                 .dateTimeProduced(LocalDateTime.now())
                 .fileName(generateUUIDFileName(sourceImageFile))
                 .build();
-        sourceImageRepository.save(sourceImage);
+        return sourceImageRepository.save(sourceImage);
     }
 }
